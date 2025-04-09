@@ -1,0 +1,540 @@
+{
+  "mockSearchData": {
+    "reliance": {
+      "count": 2,
+      "result": [
+        {
+          "description": "Reliance Industries Bond 2025",
+          "isin": "INE002A08477",
+          "symbol": "RELIANCEBOND2025",
+          "type": "Bond"
+        },
+        {
+          "description": "Reliance Industries Limited",
+          "isin": "INE002A01018",
+          "symbol": "RELIANCE",
+          "type": "Common Stock"
+        }
+      ]
+    },
+    "hdfc": {
+      "count": 3,
+      "result": [
+        {
+          "description": "HDFC Bond 2026",
+          "isin": "INE040A08393",
+          "symbol": "HDFCBOND2026",
+          "type": "Bond"
+        },
+        {
+          "description": "HDFC Bank Limited",
+          "isin": "INE040A01034",
+          "symbol": "HDFCBANK",
+          "type": "Common Stock"
+        },
+        {
+          "description": "HDFC Mutual Fund",
+          "isin": "INF179K01XD8",
+          "symbol": "HDFCMF",
+          "type": "Mutual Fund"
+        }
+      ]
+    },
+    "swiss": {
+      "count": 1,
+      "result": [
+        {
+          "description": "Swiss Confederation Bond 2030",
+          "isin": "CH0000831111",
+          "symbol": "SWISSBOND2030",
+          "type": "Bond"
+        }
+      ]
+    },
+    "ubs": {
+      "count": 3,
+      "result": [
+        {
+          "description": "UBS Corporate Bond 2028",
+          "isin": "CH0361532895",
+          "symbol": "UBSBOND2028",
+          "type": "Bond"
+        },
+        {
+          "description": "UBS (Lux) Equity Fund - Swiss Opportunity",
+          "isin": "LU0136240974",
+          "symbol": "UBSSWISS",
+          "type": "Common Stock"
+        },
+        {
+          "description": "UBS ETF Gold",
+          "isin": "CH0106381979",
+          "symbol": "UBSGOLD",
+          "type": "Common Stock"
+        }
+      ]
+    },
+    "apple": {
+      "count": 1,
+      "result": [
+        {
+          "description": "Apple Inc.",
+          "isin": "US0378331005",
+          "symbol": "AAPL",
+          "type": "Common Stock"
+        }
+      ]
+    },
+    "microsoft": {
+      "count": 1,
+      "result": [
+        {
+          "description": "Microsoft Corporation",
+          "isin": "US5949181045",
+          "symbol": "MSFT",
+          "type": "Common Stock"
+        }
+      ]
+    },
+    "nestlé": {
+      "count": 1,
+      "result": [
+        {
+          "description": "Nestlé S.A.",
+          "isin": "CH0038863350",
+          "symbol": "NESN.SW",
+          "type": "Common Stock"
+        }
+      ]
+    },
+    "roche": {
+      "count": 1,
+      "result": [
+        {
+          "description": "Roche Holding AG",
+          "isin": "CH0012032048",
+          "symbol": "ROG.SW",
+          "type": "Common Stock"
+        }
+      ]
+    },
+    "novartis": {
+      "count": 1,
+      "result": [
+        {
+          "description": "Novartis AG",
+          "isin": "CH0012005267",
+          "symbol": "NOVN.SW",
+          "type": "Common Stock"
+        }
+      ]
+    },
+    "tata": {
+      "count": 1,
+      "result": [
+        {
+          "description": "Tata Consultancy Services Limited",
+          "isin": "INE467B01029",
+          "symbol": "TCS",
+          "type": "Common Stock"
+        }
+      ]
+    },
+    "spdr": {
+      "count": 2,
+      "result": [
+        {
+          "description": "SPDR Gold Shares",
+          "isin": "US78463V1070",
+          "symbol": "GLD",
+          "type": "Common Stock"
+        },
+        {
+          "description": "SPDR Gold Shares",
+          "isin": "US78463V1070",
+          "symbol": "GLD",
+          "type": "Common Stock"
+        }
+      ]
+    },
+    "ishares": {
+      "count": 6,
+      "result": [
+        {
+          "description": "iShares Silver Trust",
+          "isin": "US46428Q1094",
+          "symbol": "SLV",
+          "type": "Common Stock"
+        },
+        {
+          "description": "iShares Global Infrastructure ETF",
+          "isin": "US4642883726",
+          "symbol": "IGF",
+          "type": "Common Stock"
+        },
+        {
+          "description": "iShares Core SMI ETF",
+          "isin": "CH0237935652",
+          "symbol": "CSSMIM",
+          "type": "Common Stock"
+        },
+        {
+          "description": "iShares MSCI World ETF",
+          "isin": "IE00B4L5Y983",
+          "symbol": "URTH",
+          "type": "Common Stock"
+        },
+        {
+          "description": "iShares Silver Trust",
+          "isin": "US46428Q1094",
+          "symbol": "SLV",
+          "type": "Common Stock"
+        },
+        {
+          "description": "iShares Global Infrastructure ETF",
+          "isin": "US4642883726",
+          "symbol": "IGF",
+          "type": "Common Stock"
+        }
+      ]
+    },
+    "vanguard": {
+      "count": 2,
+      "result": [
+        {
+          "description": "Vanguard Real Estate ETF",
+          "isin": "US9229085538",
+          "symbol": "VNQ",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Vanguard Real Estate ETF",
+          "isin": "US9229085538",
+          "symbol": "VNQ",
+          "type": "Common Stock"
+        }
+      ]
+    },
+    "nippon": {
+      "count": 2,
+      "result": [
+        {
+          "description": "Nippon India ETF Nifty 50 BeES",
+          "isin": "INF204KB14I2",
+          "symbol": "NIFTYBEES",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Nippon India Mutual Fund",
+          "isin": "INF204K01ZN5",
+          "symbol": "NIPPONMF",
+          "type": "Mutual Fund"
+        }
+      ]
+    },
+    "us": {
+      "count": 2,
+      "result": [
+        {
+          "description": "US Dollar to Swiss Franc",
+          "isin": "FX-USDCHF",
+          "symbol": "FX-USDCHF",
+          "type": "Forex"
+        },
+        {
+          "description": "US Dollar to Indian Rupee",
+          "isin": "FX-USDINR",
+          "symbol": "FX-USDINR",
+          "type": "Forex"
+        }
+      ]
+    },
+    "euro": {
+      "count": 1,
+      "result": [
+        {
+          "description": "Euro to Swiss Franc",
+          "isin": "FX-EURCHF",
+          "symbol": "FX-EURCHF",
+          "type": "Forex"
+        }
+      ]
+    },
+    "credit": {
+      "count": 1,
+      "result": [
+        {
+          "description": "Credit Suisse Equity Fund Swiss Dividend Plus",
+          "isin": "CH0011930825",
+          "symbol": "CSWISS",
+          "type": "Common Stock"
+        }
+      ]
+    },
+    "sovereign": {
+      "count": 3,
+      "result": [
+        {
+          "description": "Sovereign Gold Bond 2023-24 Series I",
+          "isin": "IN0020230080",
+          "symbol": "SGB2023I",
+          "type": "Sovereign Gold Bond"
+        },
+        {
+          "description": "Sovereign Gold Bond 2023-24 Series II",
+          "isin": "IN0020230130",
+          "symbol": "SGB2023II",
+          "type": "Sovereign Gold Bond"
+        },
+        {
+          "description": "Sovereign Gold Bond 2022-23 Series IV",
+          "isin": "IN0020220081",
+          "symbol": "SGB2022IV",
+          "type": "Sovereign Gold Bond"
+        }
+      ]
+    }
+  },
+  "mockQuoteData": {
+    "INE002A08477": {
+      "currentPrice": 490.41,
+      "highPrice": 491.02000000000004,
+      "lowPrice": 489.8,
+      "openPrice": 489.93,
+      "previousClosePrice": 490.04,
+      "timestamp": 1742812138.668
+    },
+    "INE040A08393": {
+      "currentPrice": 451.27,
+      "highPrice": 451.85999999999996,
+      "lowPrice": 450.68,
+      "openPrice": 451.52,
+      "previousClosePrice": 451.28,
+      "timestamp": 1742847652.649
+    },
+    "CH0000831111": {
+      "currentPrice": 154.82,
+      "highPrice": 156.48,
+      "lowPrice": 153.16,
+      "openPrice": 154.69,
+      "previousClosePrice": 154.86,
+      "timestamp": 1742816149.297
+    },
+    "CH0361532895": {
+      "currentPrice": 379.76,
+      "highPrice": 380.32,
+      "lowPrice": 379.2,
+      "openPrice": 380.01,
+      "previousClosePrice": 380.02,
+      "timestamp": 1742801638.946
+    },
+    "US0378331005": {
+      "currentPrice": 320.48,
+      "highPrice": 323.05,
+      "lowPrice": 317.91,
+      "openPrice": 322.2,
+      "previousClosePrice": 318.67,
+      "timestamp": 1742806690.337
+    },
+    "US5949181045": {
+      "currentPrice": 131.51,
+      "highPrice": 132.45999999999998,
+      "lowPrice": 130.56,
+      "openPrice": 131.19,
+      "previousClosePrice": 130.75,
+      "timestamp": 1742830170.047
+    },
+    "CH0038863350": {
+      "currentPrice": 280.32,
+      "highPrice": 281.84,
+      "lowPrice": 278.8,
+      "openPrice": 281.07,
+      "previousClosePrice": 279.26,
+      "timestamp": 1742782619.266
+    },
+    "CH0012032048": {
+      "currentPrice": 159.3,
+      "highPrice": 159.95000000000002,
+      "lowPrice": 158.65,
+      "openPrice": 159.62,
+      "previousClosePrice": 159.37,
+      "timestamp": 1742829875.825
+    },
+    "CH0012005267": {
+      "currentPrice": 271.94,
+      "highPrice": 272.21,
+      "lowPrice": 271.67,
+      "openPrice": 272.2,
+      "previousClosePrice": 272.07,
+      "timestamp": 1742778579.388
+    },
+    "INE002A01018": {
+      "currentPrice": 292.68,
+      "highPrice": 293.45,
+      "lowPrice": 291.91,
+      "openPrice": 293.36,
+      "previousClosePrice": 293.36,
+      "timestamp": 1742818693.829
+    },
+    "INE467B01029": {
+      "currentPrice": 147.48,
+      "highPrice": 148.45,
+      "lowPrice": 146.51,
+      "openPrice": 146.89,
+      "previousClosePrice": 147.04,
+      "timestamp": 1742803934.594
+    },
+    "INE040A01034": {
+      "currentPrice": 373.09,
+      "highPrice": 374.82,
+      "lowPrice": 371.35999999999996,
+      "openPrice": 372.86,
+      "previousClosePrice": 371.58,
+      "timestamp": 1742849479.821
+    },
+    "US78463V1070": {
+      "currentPrice": 357.37,
+      "highPrice": 358.52,
+      "lowPrice": 356.22,
+      "openPrice": 356.59,
+      "previousClosePrice": 358.48,
+      "timestamp": 1742822709.376
+    },
+    "US46428Q1094": {
+      "currentPrice": 267.11,
+      "highPrice": 269.64,
+      "lowPrice": 264.58000000000004,
+      "openPrice": 268.68,
+      "previousClosePrice": 267.71,
+      "timestamp": 1742822155.455
+    },
+    "US9229085538": {
+      "currentPrice": 332.49,
+      "highPrice": 336.83,
+      "lowPrice": 328.15000000000003,
+      "openPrice": 335.16,
+      "previousClosePrice": 330.65,
+      "timestamp": 1742789007.639
+    },
+    "US4642883726": {
+      "currentPrice": 458.5,
+      "highPrice": 461.14,
+      "lowPrice": 455.86,
+      "openPrice": 460.68,
+      "previousClosePrice": 457.09,
+      "timestamp": 1742820847.08
+    },
+    "CH0237935652": {
+      "currentPrice": 104.24,
+      "highPrice": 105.13,
+      "lowPrice": 103.35,
+      "openPrice": 104.04,
+      "previousClosePrice": 104.43,
+      "timestamp": 1742827517.851
+    },
+    "IE00B4L5Y983": {
+      "currentPrice": 340.41,
+      "highPrice": 345.13000000000005,
+      "lowPrice": 335.69,
+      "openPrice": 344.14,
+      "previousClosePrice": 336.97,
+      "timestamp": 1742843048.832
+    },
+    "INF204KB14I2": {
+      "currentPrice": 141.57,
+      "highPrice": 143.64,
+      "lowPrice": 139.5,
+      "openPrice": 140.48,
+      "previousClosePrice": 139.82,
+      "timestamp": 1742780642.665
+    },
+    "FX-USDCHF": {
+      "currentPrice": 343.02,
+      "highPrice": 343.06,
+      "lowPrice": 342.97999999999996,
+      "openPrice": 342.99,
+      "previousClosePrice": 343.05,
+      "timestamp": 1742816192.092
+    },
+    "FX-EURCHF": {
+      "currentPrice": 379.44,
+      "highPrice": 383.92,
+      "lowPrice": 374.96,
+      "openPrice": 383.36,
+      "previousClosePrice": 380.95,
+      "timestamp": 1742812364.79
+    },
+    "FX-USDINR": {
+      "currentPrice": 279.46,
+      "highPrice": 282.44,
+      "lowPrice": 276.47999999999996,
+      "openPrice": 280.71,
+      "previousClosePrice": 277.82,
+      "timestamp": 1742816856.653
+    },
+    "INF179K01XD8": {
+      "currentPrice": 251.16,
+      "highPrice": 251.67,
+      "lowPrice": 250.65,
+      "openPrice": 251.27,
+      "previousClosePrice": 250.92,
+      "timestamp": 1742773138.087
+    },
+    "INF204K01ZN5": {
+      "currentPrice": 299.97,
+      "highPrice": 301.5,
+      "lowPrice": 298.44000000000005,
+      "openPrice": 301.15,
+      "previousClosePrice": 299.21,
+      "timestamp": 1742771078.856
+    },
+    "LU0136240974": {
+      "currentPrice": 91.92,
+      "highPrice": 94.36,
+      "lowPrice": 89.48,
+      "openPrice": 94.3,
+      "previousClosePrice": 90.44,
+      "timestamp": 1742770736.222
+    },
+    "CH0011930825": {
+      "currentPrice": 470.14,
+      "highPrice": 473.71,
+      "lowPrice": 466.57,
+      "openPrice": 470.73,
+      "previousClosePrice": 472.36,
+      "timestamp": 1742840105.408
+    },
+    "CH0106381979": {
+      "currentPrice": 133.99,
+      "highPrice": 136.16,
+      "lowPrice": 131.82000000000002,
+      "openPrice": 132.17,
+      "previousClosePrice": 135.16,
+      "timestamp": 1742790317.553
+    },
+    "IN0020230080": {
+      "currentPrice": 239.13,
+      "highPrice": 239.44,
+      "lowPrice": 238.82,
+      "openPrice": 238.91,
+      "previousClosePrice": 238.95,
+      "timestamp": 1742829772.401
+    },
+    "IN0020230130": {
+      "currentPrice": 463.46,
+      "highPrice": 465.03,
+      "lowPrice": 461.89,
+      "openPrice": 464.49,
+      "previousClosePrice": 463.77,
+      "timestamp": 1742820664.196
+    },
+    "IN0020220081": {
+      "currentPrice": 149.95,
+      "highPrice": 153.82,
+      "lowPrice": 146.07999999999998,
+      "openPrice": 150.7,
+      "previousClosePrice": 146.79,
+      "timestamp": 1742841479.331
+    }
+  }
+}
