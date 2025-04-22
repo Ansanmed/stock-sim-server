@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 import bcrypt from "bcryptjs";
-import { User } from "../types/User";
+import { User } from "../interfaces/User";
 
 export interface UserDocument extends User, Document {
   _id: string;
@@ -23,7 +23,7 @@ const userSchema = new Schema<UserDocument>(
   {
     toJSON: {
       transform: (doc, ret) => {
-        ret._id = ret._id.toString(); // Convierte ObjectId a string al serializar
+        ret._id = ret._id.toString();
         return ret;
       },
     },

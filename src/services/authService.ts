@@ -1,31 +1,59 @@
-import jwt, { JwtPayload } from "jsonwebtoken";
-import UserModel, { UserDocument } from "../models/User";
+import jwt from "jsonwebtoken";
+import UserModel from "../models/schemas/User";
 import config from "../config";
+import { AppError } from "../errors/AppError";
+import { errorCodes } from "../errors/errorCodes";
+import { HttpStatusCode } from "axios";
+
+interface JwtPayload {
+  userId: string;
+}
 
 export class AuthService {
   static async register(
     email: string,
     password: string
-  ): Promise<UserDocument> {
+  ): Promise<{ user: { _id: string; email: string }; accessToken: string }> {
     const existingUser = await UserModel.findOne({ email });
     if (existingUser) {
-      throw new Error("User already exists");
+      throw new AppError(
+        "User already exists",
+        HttpStatusCode.BadRequest,
+        errorCodes.auth.USER_ALREADY_EXISTS
+      );
     }
 
     const user = new UserModel({ email, password });
     await user.save();
-    return user;
+
+    const payload: JwtPayload = { userId: user._id.toString() };
+    const accessToken = jwt.sign(payload, config.jwtSecret, {
+      expiresIn: "1h",
+    });
+
+    return {
+      user: { _id: user._id.toString(), email: user.email },
+      accessToken,
+    };
   }
 
   static async login(email: string, password: string): Promise<string> {
     const user = await UserModel.findOne({ email });
     if (!user) {
-      throw new Error("Invalid credentials");
+      throw new AppError(
+        "Bad Credentials",
+        HttpStatusCode.Unauthorized,
+        errorCodes.auth.INVALID_CREDENTIALS
+      );
     }
 
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
-      throw new Error("Invalid credentials");
+      throw new AppError(
+        "Bad Credentials",
+        HttpStatusCode.Unauthorized,
+        errorCodes.auth.INVALID_CREDENTIALS
+      );
     }
 
     const payload: JwtPayload = { userId: user._id.toString() };

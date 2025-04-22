@@ -3,6 +3,8 @@ export interface Config {
   mongoUri: string;
   jwtSecret: string;
   finnhubApiKey: string;
+  finnhubApiUrl: string;
   alphaVantageApiKey: string;
+  alphaVantageApiUrl: string;
   frontendUrl: string;
 }

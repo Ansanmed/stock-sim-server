@@ -1,26 +1,52 @@
 import { Router, Request, Response } from "express";
 import { AuthService } from "../services/authService";
+import { AppError } from "../errors/AppError";
+import { errorCodes } from "../errors/errorCodes";
+import { HttpStatusCode } from "axios";
 
 const router = Router();
 
-router.post("/register", async (req: Request, res: Response) => {
-  try {
-    const { email, password } = req.body;
-    const user = await AuthService.register(email, password);
-    res.status(201).json({ message: "User registered", userId: user._id });
-  } catch (error: any) {
-    res.status(400).json({ message: error.message });
-  }
-});
+interface AuthRequestBody {
+  email: string;
+  password: string;
+}
 
-router.post("/login", async (req: Request, res: Response) => {
-  try {
+router.post(
+  "/register",
+  async (req: Request<{}, {}, AuthRequestBody>, res: Response) => {
     const { email, password } = req.body;
-    const token = await AuthService.login(email, password);
-    res.json({ token });
-  } catch (error: any) {
-    res.status(401).json({ message: error.message });
+    if (!email || !password) {
+      throw new AppError(
+        "Email and password are required",
+        HttpStatusCode.BadRequest,
+        errorCodes.general.BAD_REQUEST
+      );
+    }
+
+    const { user, accessToken } = await AuthService.register(email, password);
+    res.status(HttpStatusCode.Created).json({
+      message: "User registered",
+      userId: user._id,
+      accessToken,
+    });
   }
-});
+);
+
+router.post(
+  "/login",
+  async (req: Request<{}, {}, AuthRequestBody>, res: Response) => {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      throw new AppError(
+        "Email and password are required",
+        HttpStatusCode.BadRequest,
+        errorCodes.general.BAD_REQUEST
+      );
+    }
+
+    const token = await AuthService.login(email, password);
+    res.status(HttpStatusCode.Ok).json({ token });
+  }
+);
 
 export default router;

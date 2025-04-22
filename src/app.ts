@@ -1,11 +1,13 @@
+import "express-async-errors";
 import express, { Express } from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import config from "./config";
 import authRoutes from "./routes/auth";
-import finnhubRoutes from "./routes/finnhub";
 import { rateLimiter } from "./middleware/rateLimiter";
-import alphaVantageRoutes from "./routes/alphaVantageRoutes";
+import securitiesRoutes from "./routes/securities";
+import portfolioRoutes from "./routes/portfolioRoutes";
+import { errorHandler } from "./middleware/errorHandler";
 
 export const createApp = async (): Promise<Express> => {
   const app = express();
@@ -21,8 +23,11 @@ export const createApp = async (): Promise<Express> => {
 
   // Routes
   app.use("/api/auth", authRoutes);
-  app.use("/api/finnhub", finnhubRoutes);
-  app.use("/api/alphavantage", alphaVantageRoutes);
+  app.use("/api/securities", securitiesRoutes);
+  app.use("/api/portfolio", portfolioRoutes);
+
+  // Error middlewre
+  app.use(errorHandler);
 
   return app;
 };

@@ -1,71 +1,97 @@
-import axios, { AxiosResponse, AxiosError } from "axios";
+import axios from "axios";
 import config from "../config";
+import { AppError } from "../errors/AppError";
+import { errorCodes } from "../errors/errorCodes";
+import { HttpStatusCode } from "axios";
+import { mapToStockCandles } from "../shared/utils/mappers";
+import { Interval, OutputSize } from "../models/types/StockCandlesTypes";
+import { StockCandle } from "../models/interfaces/StockCandle";
+import { TimeSeriesData } from "../models/interfaces/TimeSeriesData";
 
 export class AlphaVantageService {
   static async getStockCandles(
     symbol: string,
-    interval: string = "daily", // 'daily', 'intraday'
-    outputsize: string = "compact" // 'compact' (100 datos) o 'full' (todos los datos)
-  ): Promise<AxiosResponse<any>> {
+    interval: Interval = "daily",
+    outputsize: OutputSize = "compact"
+  ): Promise<StockCandle[]> {
     if (!config.alphaVantageApiKey) {
-      throw new Error("Alpha Vantage API key is not configured");
+      throw new AppError(
+        "Alpha Vantage API key is not configured",
+        HttpStatusCode.InternalServerError,
+        errorCodes.stocks.CANDLE_API_KEY_NOT_CONFIGURED
+      );
+    }
+
+    if (!symbol || symbol.trim().length === 0) {
+      throw new AppError(
+        "Symbol is required",
+        HttpStatusCode.BadRequest,
+        errorCodes.stocks.SEARCH_TERM_REQUIRED_OR_INVALID
+      );
+    }
+
+    const validIntervals: Interval[] = ["daily", "intraday"];
+    if (!validIntervals.includes(interval)) {
+      throw new AppError(
+        "Invalid interval. Must be 'daily' or 'intraday'",
+        HttpStatusCode.BadRequest,
+        errorCodes.stocks.CANDLE_INVALID_INTERVAL
+      );
+    }
+
+    const validOutputSizes: OutputSize[] = ["compact", "full"];
+    if (!validOutputSizes.includes(outputsize)) {
+      throw new AppError(
+        "Invalid outputsize. Must be 'compact' or 'full'",
+        HttpStatusCode.BadRequest,
+        errorCodes.stocks.CANDLE_INVALID_OUTPUTSIZE
+      );
     }
 
     const functionType =
       interval === "daily" ? "TIME_SERIES_DAILY" : "TIME_SERIES_INTRADAY";
-    const intervalParam = interval === "intraday" ? "&interval=60min" : "";
 
     try {
-      const params = {
-        function: functionType,
-        symbol,
-        outputsize,
-        ...(interval === "intraday" && { interval: "60min" }),
-        apikey: config.alphaVantageApiKey,
-      };
-
-      console.log(params);
-
-      const response = await axios.get("https://www.alphavantage.co/query", {
-        params,
+      const response = await axios.get(`${config.alphaVantageApiUrl}/query`, {
+        params: {
+          function: functionType,
+          symbol,
+          outputsize,
+          ...(interval === "intraday" && { interval: "60min" }),
+          apikey: config.alphaVantageApiKey,
+        },
       });
 
-      // Verificar si hay un error en la respuesta de Alpha Vantage
       if (response.data["Error Message"]) {
-        throw new Error(response.data["Error Message"]);
+        throw new AppError(
+          response.data["Error Message"],
+          HttpStatusCode.BadRequest,
+          errorCodes.stocks.STOCK_NOT_FOUND
+        );
       }
 
-      // Normalizar la respuesta para que sea más fácil de usar
       const timeSeriesKey =
         interval === "daily" ? "Time Series (Daily)" : "Time Series (60min)";
-      const timeSeries = response.data[timeSeriesKey];
+      const timeSeries: TimeSeriesData = response.data[timeSeriesKey];
 
-      if (!timeSeries) {
-        throw new Error("No data returned from Alpha Vantage");
+      if (!timeSeries || Object.keys(timeSeries).length === 0) {
+        throw new AppError(
+          "No data returned for the specified symbol",
+          HttpStatusCode.NotFound,
+          errorCodes.stocks.CANDLE_NO_DATA_RETURNED
+        );
       }
 
-      // Convertir el formato de Alpha Vantage a un formato más estándar
-      const candles = Object.keys(timeSeries).map((date) => ({
-        date,
-        open: parseFloat(timeSeries[date]["1. open"]),
-        high: parseFloat(timeSeries[date]["2. high"]),
-        low: parseFloat(timeSeries[date]["3. low"]),
-        close: parseFloat(timeSeries[date]["4. close"]),
-        volume: parseInt(timeSeries[date]["5. volume"], 10),
-      }));
-
-      return {
-        ...response,
-        data: candles,
-      };
+      return mapToStockCandles(timeSeries);
     } catch (error) {
-      const axiosError = error as AxiosError;
-      if (axiosError.response?.status === 429) {
-        throw new Error("Rate limit exceeded for Alpha Vantage API");
+      if (axios.isAxiosError(error) && error.response?.status === 429) {
+        throw new AppError(
+          "Rate limit exceeded for Alpha Vantage API",
+          HttpStatusCode.TooManyRequests,
+          errorCodes.stocks.CANDLE_API_RATE_LIMIT_EXCEEDED
+        );
       }
-      throw new Error(
-        axiosError.message || "Error connecting to Alpha Vantage API"
-      );
+      throw error;
     }
   }
 }
