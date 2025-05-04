@@ -3,11 +3,11 @@ import express, { Express } from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import config from "./config";
-import authRoutes from "./routes/auth";
 import { rateLimiter } from "./middleware/rateLimiter";
-import securitiesRoutes from "./routes/securities";
-import portfolioRoutes from "./routes/portfolioRoutes";
+import portfolioRoutes from "./modules/portfolio/portfolioRoutes";
 import { errorHandler } from "./middleware/errorHandler";
+import authRoutes from "./modules/auth/authRoutes";
+import securitiesRoutes from "./modules/instruments/securitiesRoutes";
 
 export const createApp = async (): Promise<Express> => {
   const app = express();

@@ -1,8 +1,8 @@
 import { Router, Request, Response } from "express";
-import { AuthService } from "../services/authService";
-import { AppError } from "../errors/AppError";
-import { errorCodes } from "../errors/errorCodes";
 import { HttpStatusCode } from "axios";
+import { AppError } from "../../errors/AppError";
+import { errorCodes } from "../../errors/errorCodes";
+import { AuthService } from "./authService";
 
 const router = Router();
 

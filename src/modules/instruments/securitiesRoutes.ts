@@ -1,8 +1,8 @@
 import { Router, Request, Response } from "express";
-import { FinnhubService } from "../services/finnhubSrvice";
-import { AppError } from "../errors/AppError";
 import { HttpStatusCode } from "axios";
-import { errorCodes } from "../errors/errorCodes";
+import { AppError } from "../../errors/AppError";
+import { errorCodes } from "../../errors/errorCodes";
+import { FinnhubService } from "./finnhubSrvice";
 
 const router = Router();
 

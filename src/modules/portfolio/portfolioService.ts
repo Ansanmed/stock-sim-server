@@ -1,8 +1,8 @@
-import Portfolio, { IPortfolio } from "../models/schemas/Portfolio";
-import { AppError } from "../errors/AppError";
-import { errorCodes } from "../errors/errorCodes";
 import { HttpStatusCode } from "axios";
-import { PortfolioSummary } from "../models/interfaces/PortfolioSummary";
+import Portfolio, { IPortfolio } from "../../models/schemas/Portfolio";
+import { AppError } from "../../errors/AppError";
+import { errorCodes } from "../../errors/errorCodes";
+import { PortfolioSchema, PortfolioDTO } from "./dto/PortfolioDTO";
 
 export class PortfolioService {
   private static async generateUniqueName(
@@ -29,23 +29,30 @@ export class PortfolioService {
 
   static async createPortfolio(
     userId: string,
-    portfolio: PortfolioSummary
+    portfolioData: unknown // Datos sin validar
   ): Promise<IPortfolio> {
-    if (!portfolio.name) {
-      throw new AppError(
-        "Portfolio name is required",
-        HttpStatusCode.BadRequest,
-        errorCodes.portfolio.PORTFOLIO_NAME_REQUIRED
-      );
-    }
+    // Validar los datos usando el esquema Zod
+    const portfolio: PortfolioDTO = PortfolioSchema.parse(portfolioData);
 
+    // Validar que cada elemento de composition tenga purchasePrice
+    portfolio.composition.forEach((item) => {
+      if (!item.purchasePrice) {
+        throw new AppError(
+          "Each composition item must include a purchasePrice",
+          HttpStatusCode.BadRequest,
+          errorCodes.general.BAD_REQUEST
+        );
+      }
+    });
+
+    // Generar un nombre único para el portfolio
     const uniqueName = await this.generateUniqueName(userId, portfolio.name);
 
+    // Crear el nuevo portfolio
     const newPortfolio = new Portfolio({
       ...portfolio,
       name: uniqueName,
       userId,
-      composition: portfolio.composition || [],
     });
 
     return await newPortfolio.save();
@@ -76,8 +83,11 @@ export class PortfolioService {
   static async modifyPortfolio(
     portfolioId: string,
     userId: string,
-    portfolio: PortfolioSummary
+    portfolioData: unknown // Datos sin validar
   ): Promise<IPortfolio> {
+    // Validar los datos usando el esquema Zod
+    const portfolio: PortfolioDTO = PortfolioSchema.parse(portfolioData);
+
     const storedPortfolio = await Portfolio.findOne({
       _id: portfolioId,
       userId,

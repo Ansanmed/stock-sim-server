@@ -1,12 +1,11 @@
-import axios from "axios";
-import config from "../config";
-import { AppError } from "../errors/AppError";
-import { errorCodes } from "../errors/errorCodes";
-import { HttpStatusCode } from "axios";
-import { mapToStockCandles } from "../shared/utils/mappers";
-import { Interval, OutputSize } from "../models/types/StockCandlesTypes";
-import { StockCandle } from "../models/interfaces/StockCandle";
-import { TimeSeriesData } from "../models/interfaces/TimeSeriesData";
+import axios, { HttpStatusCode } from "axios";
+import { Interval, OutputSize } from "../../models/types/StockCandlesTypes";
+import { StockCandle } from "../../models/interfaces/StockCandle";
+import config from "../../config";
+import { AppError } from "../../errors/AppError";
+import { errorCodes } from "../../errors/errorCodes";
+import { TimeSeriesData } from "../../models/interfaces/TimeSeriesData";
+import { mapToStockCandles } from "../../shared/utils/mappers";
 
 export class AlphaVantageService {
   static async getStockCandles(

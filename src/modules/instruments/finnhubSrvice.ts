@@ -1,9 +1,9 @@
 import axios, { AxiosResponse } from "axios";
-import config from "../config";
-import { AppError } from "../errors/AppError";
-import { errorCodes } from "../errors/errorCodes";
 import { HttpStatusCode } from "axios";
-import { FinnhubSearchResult } from "../models/interfaces/FinnhubSearchResult";
+import { FinnhubSearchResult } from "../../models/interfaces/FinnhubSearchResult";
+import { AppError } from "../../errors/AppError";
+import { errorCodes } from "../../errors/errorCodes";
+import config from "../../config";
 
 export class FinnhubService {
   static async securitySearch(

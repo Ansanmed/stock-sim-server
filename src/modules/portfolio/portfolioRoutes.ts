@@ -1,9 +1,10 @@
 import express, { NextFunction, Request, Response } from "express";
-import { AppError } from "../errors/AppError";
-import { errorCodes } from "../errors/errorCodes";
+import { AppError } from "../../errors/AppError";
+import { errorCodes } from "../../errors/errorCodes";
 import { HttpStatusCode } from "axios";
-import { PortfolioService } from "../services/portfolioService";
-import { authMiddleware } from "../middleware/auth";
+import { authMiddleware } from "../auth/authMiddleware";
+import { PortfolioService } from "./portfolioService";
+import { PortfolioSchema } from "./dto/PortfolioDTO";
 
 const router = express.Router();
 
@@ -15,7 +16,7 @@ router.post(
   "/",
   authMiddleware,
   async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
-    const portfolioData = req.body;
+    const portfolioData = PortfolioSchema.parse(req.body);
     const portfolio = await PortfolioService.createPortfolio(
       req.user!.userId,
       portfolioData

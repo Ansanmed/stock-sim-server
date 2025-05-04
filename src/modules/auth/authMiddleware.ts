@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import config from "../config";
-import { AppError } from "../errors/AppError";
-import { errorCodes } from "../errors/errorCodes";
+import config from "../../config";
+import { AppError } from "../../errors/AppError";
+import { errorCodes } from "../../errors/errorCodes";
 import { HttpStatusCode } from "axios";
 
 interface JwtPayload {

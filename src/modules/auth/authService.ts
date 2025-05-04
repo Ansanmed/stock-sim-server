@@ -1,10 +1,9 @@
 import jwt from "jsonwebtoken";
-import UserModel from "../models/schemas/User";
-import config from "../config";
-import { AppError } from "../errors/AppError";
-import { errorCodes } from "../errors/errorCodes";
 import { HttpStatusCode } from "axios";
-
+import { AppError } from "../../errors/AppError";
+import { errorCodes } from "../../errors/errorCodes";
+import config from "../../config";
+import UserModel from "../../models/schemas/User";
 interface JwtPayload {
   userId: string;
 }
